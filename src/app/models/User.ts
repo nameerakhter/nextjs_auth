@@ -1,35 +1,41 @@
-import mongoose from "mongoose";
+import mongoose, { Schema, Document } from 'mongoose';
 
-const userSchema = new mongoose.Schema({
-  username: {
+export interface User extends Document{
+  username: string;
+  email: string;
+  password: string;
+  isAdmin: boolean;
+  isForgotPasswordToken: string;
+  isForgotPasswordTokenExpiry: boolean;
+  isVerifiedToken: string;
+  isVerifiedTokenExpiry: boolean;
+}
+
+const userSchema: Schema<User> = new Schema({
+  username:{
     type: String,
-    required: [true, "Please enter a username"],
+    required: [true, "Please provide a username"],
+    trim: true,
     unique: true,
   },
-  email: {
+  email:{
     type: String,
-    required: [true, "Please provide an email"],
-    unique: true,
+    required: [true, "Please provide a valid email"],
+    unique: true
   },
-  password: {
+  password:{
     type: String,
-    required: [true, "Please enter a password"],
+    required: [true, "Password is required"]
   },
-  isVerified: {
+  isAdmin:{
     type: Boolean,
-    default: false,
+    default: false
   },
-  isAdmin: {
-    type: Boolean,
-    default: false,
-  },
-  forgotPasswordToken: String,
-  forgotPasswordTokenExpiry: Date,
-  verifyToken: String,
-  verifyTokenExpiry: Date,
-});
+  isForgotPasswordToken: String,
+  isForgotPasswordTokenExpiry: Boolean,
+  isVerifiedToken:String,
+  isVerifiedTokenExpiry:Boolean,
 
-const User = mongoose.models.users || mongoose.model("users", userSchema) // Agar models bane hue h toh theek h varna ek kaam karo ek naya model banado
+}) 
 
-
-export default User
+const UserModel = (mongoose.models.User as mongoose.Model<User> || mongoose.model<User>("User", userSchema))
