@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
     "mailer": "^0.6.7",
+    "mongodb": "^6.8.0",
     "mongoose": "^8.4.5",
     "next": "14.2.4",
     "nodemailer": "^6.9.14",
@@ -18,7 +20,9 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/nodemailer": "^6.4.15",
+    "@types/react": "18.3.3",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "postcss": "^8",
