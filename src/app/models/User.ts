@@ -23,6 +23,7 @@ const userSchema: Schema<User> = new Schema({
     type: String,
     required: [true, "Please provide a valid email"],
     unique: true,
+    trim: true,
   },
   password: {
     type: String,
@@ -37,19 +38,9 @@ const userSchema: Schema<User> = new Schema({
     default: false,
   },
   isForgotPasswordToken: String,
-  isForgotPasswordTokenExpiry: {
-    type: Date,
-    required: [true, "Forgot password token is required"],
-    unique: true,
-    default: null
-  },
+  isForgotPasswordTokenExpiry: Date,
   isVerifiedToken: String,
-  isVerifiedTokenExpiry: {
-    type: Date,
-    required: [true, "Verify Code expiry is required"],
-    unique: true,
-    default: null
-  },
+  isVerifiedTokenExpiry: Date
 });
 
 const UserModel =

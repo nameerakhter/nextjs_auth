@@ -10,12 +10,19 @@ export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
     const { username, email, password } = reqBody;
-    // validation
 
-    console.log(reqBody);
+    // Validate input
+    if (!username || !email || !password) {
+      return NextResponse.json(
+        {
+          error: "All fields are required",
+        },
+        { status: 400 }
+      );
+    }
 
+    // Check if user already exists
     const user = await UserModel.findOne({ email });
-
     if (user) {
       return NextResponse.json(
         {
@@ -25,31 +32,37 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Hash password
     const salt = await bcryptjs.genSalt(10);
     const hashedPassword = await bcryptjs.hash(password, salt);
 
+    // Create new user
     const newUser = new UserModel({
-      username: username,
-      email: email,
+      username,
+      email,
       password: hashedPassword,
     });
 
+    // Save new user to database
     const savedUser = await newUser.save();
-    console.log(savedUser);
+    console.log(`Saved user to database: ${savedUser}`);
 
-    // Send Verification email
-
+    // Send verification email
     await sendEmail({ email, emailType: "VERIFY", userId: savedUser._id });
 
     return NextResponse.json({
-      message: "verification email sent",
+      message: "Verification email sent",
       success: true,
-      savedUser,
+      user: savedUser,
     });
-  } catch (error: any) {
-    return NextResponse.json({
-        message: "User registered successfully",
-        success: true,
-    });
+
+  } catch (error) {
+    console.error("Error saving user:", error);
+    return NextResponse.json(
+      {
+        error: "Something went wrong",
+      },
+      { status: 500 }
+    );
   }
 }
