@@ -22,17 +22,17 @@ export const sendEmail = async ({ email, emailType, userId }) => {
     };
     const mailResponse = await transport.sendMail(mailOptions);
     return mailResponse;
-  } catch (error) {
+  } catch (error:any) {
     throw new error(error.message);
   }
 };
 
-const transport = nodemailer.createTransport({
+var transport = nodemailer.createTransport({
   host: "sandbox.smtp.mailtrap.io",
   port: 2525,
   auth: {
-    user: "cce368d4c96863",
-    pass: "cbf4d0daa2216c"
+    user: "37705fcc408932",
+    pass: "a75aa13991976a"
   }
 });
 
