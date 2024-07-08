@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "mailer": "^0.6.7",
     "mongoose": "^8.4.5",
     "next": "14.2.4",
     "nodemailer": "^6.9.14",
@@ -16,6 +17,7 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/nodemailer": "^6.4.15",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "postcss": "^8",
