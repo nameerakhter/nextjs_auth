@@ -7,11 +7,11 @@ export const sendEmail = async ({ email, emailType, userId }) => {
   try {
     const hashedToken = await bcryptjs.hash(userId.toString(), 10)
     if (emailType === "VERIFY") {
-      await UserModel.findByIdAndUpdate(userId, {
-        isVerifiedToken: hashedToken, isVerifiedTokenExpiry:Date.now() + 3600000}) // expiry token for 1 hr
+      await UserModel.findByIdAndUpdate(userId, {$set: {
+        isVerifiedToken: hashedToken, isVerifiedTokenExpiry:Date.now() + 3600000}}) // expiry token for 1 hr
       }else if(emailType === "RESET"){
-        await UserModel.findByIdAndUpdate(userId, {
-        isForgotPasswordToken: hashedToken, isForgotPasswordTokenExpiry:Date.now() + 3600000})
+        await UserModel.findByIdAndUpdate(userId, {$set: {
+        isForgotPasswordToken: hashedToken, isForgotPasswordTokenExpiry:Date.now() + 3600000}})
     }
     const mailOptions = {
       from: "nameer@nameer.ai",
@@ -44,6 +44,7 @@ const getVerifyEmailHtml = (token) => `
       <p>Click the link below to verify your email address:</p>
       <a href="${process.env.DOMAIN}/verifyemail?token=${token}">Verify Email</a>
       <p>This link will expire in 1 hour.</p>
+      token: ${token}
     </body>
   </html>
 `;
@@ -55,6 +56,7 @@ const getResetEmailHtml = (token) => `
       <p>Click the link below to reset your password:</p>
       <a href="${process.env.DOMAIN}/resetemail?token=${token}">Reset Password</a>
       <p>This link will expire in 1 hour.</p>
+      token: ${token}
     </body>
   </html>
 `;
