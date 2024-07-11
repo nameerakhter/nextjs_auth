@@ -60,31 +60,31 @@ const signupPage = () => {
       />
       <label
         className="text-white font-extrabold tracking-tight text-4xl"
-        htmlFor="username"
+        htmlFor="email"
       >
         Email
       </label>
       <input
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
         type="text"
-        id="username"
+        id="email"
         value={user.email}
         onChange={(e) => setUser({ ...user, email: e.target.value })}
-        placeholder="username"
+        placeholder="email"
       />
       <label
         className="text-white font-extrabold tracking-tight text-4xl"
-        htmlFor="username"
+        htmlFor="password"
       >
         Password
       </label>
       <input
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
         type="password"
-        id="username"
+        id="password"
         value={user.password}
         onChange={(e) => setUser({ ...user, password: e.target.value })}
-        placeholder="username"
+        placeholder="password"
       />
 
       <button onClick={onSignUp} className="p-2 border border-gray-300 rounded-full mb-4 focus:outline-none focus:border-gray-600 text-white">
