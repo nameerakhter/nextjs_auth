@@ -7,14 +7,14 @@ import { useRouter } from "next/navigation";
 import { set } from "mongoose";
 import Link from "next/link";
 
-const profilePage = () => {
+const ProfilePage = () => {
   const router = useRouter();
   const [data, setdata] = useState("nothing");
   const getUserDetails = async () => {
     try {
       const response = await axios.post("/api/users/profile");
       console.log(response);
-      setdata(response.data.data._id);
+      setdata(response.data.data.username);
     } catch (error: any) {
       console.log(error.message);
     }
@@ -60,4 +60,4 @@ const profilePage = () => {
   );
 };
 
-export default profilePage;
+export default ProfilePage;

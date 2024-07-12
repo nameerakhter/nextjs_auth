@@ -1,11 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { toast } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const loginPage = () => {
+const LoginPage = () => {
   const router = useRouter();
   const [user, setUser] = useState({
     email: "",
@@ -21,6 +21,8 @@ const loginPage = () => {
       const response = await axios.post("/api/users/login", user);
       console.log("login successfull", response.data);
       router.push("/profile");
+      console.log("login successfull", response.data);
+      toast.success(`Welcome back ${response.data.username}`);
     } catch (error: any) {
       console.log("login failed");
       toast.error(error.message);
@@ -39,7 +41,7 @@ const loginPage = () => {
   return (
     <div className="flex flex-col items-center justify-center py-2 min-h-screen">
       <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6 text-white ">
-        {loading ? "Processing" : "Login"}
+        {loading ? `Welcome back User` : "Login"}
       </h1>
       <hr />
       <label
@@ -79,4 +81,4 @@ const loginPage = () => {
   );
 };
 
-export default loginPage;
+export default LoginPage;

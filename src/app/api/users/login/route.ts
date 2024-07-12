@@ -17,7 +17,7 @@ export async function POST(request: NextRequest){
 
        if (!user) {
         return NextResponse.json({
-            message: "User does not exists"
+            message: "User does not exists",
         }, {status: 400})
        }
        console.log("User exists")
@@ -40,7 +40,8 @@ export async function POST(request: NextRequest){
 
       const response = NextResponse.json({
         message: "Logged in successfully",
-        success: true
+        success: true,
+        username: user.username,
       })
 
       response.cookies.set("token", token,{
