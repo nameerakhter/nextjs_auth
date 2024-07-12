@@ -39,19 +39,19 @@ const LoginPage = () => {
     setbuttonDisabled(true);}
   }, [user]);
   return (
-    <div className="flex flex-col items-center justify-center py-2 min-h-screen">
-      <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6 text-white ">
-        {loading ? `Welcome back User` : "Login"}
+    <div className="flex flex-col justify-center py-[4vw] mr-[40vw] ml-[40vw] mt-[10vw] mb-[20vw] rounded bg-black drop-shadow-2xl ">
+      <h1 className="text-4xl font-semibold tracking-tight lg:text-5xl mb-[2vw] text-white">
+        {loading ? `Checking credentials` : "Login"}
       </h1>
       <hr />
       <label
-        className="text-white font-extrabold tracking-tight text-4xl"
-        htmlFor="email"
+        className="text-white font-normal text-2xl tracking-tight text-normal py-[1vw] p"
+        htmlFor=" email"
       >
         Email
       </label>
       <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+        className="p-2 border bg-black border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-white py-2"
         type="text"
         id="email"
         value={user.email}
@@ -59,13 +59,13 @@ const LoginPage = () => {
         placeholder="email"
       />
       <label
-        className="text-white font-extrabold tracking-tight text-4xl"
+        className="text-white font-light tracking-tight text-2xl py-[1vw]"
         htmlFor="password"
       >
         Password
       </label>
       <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
+        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-white py-2 bg-black"
         type="password"
         id="password"
         value={user.password}
@@ -73,10 +73,14 @@ const LoginPage = () => {
         placeholder="password"
       />
 
-      <button onClick={onLogin} className="p-2 border border-gray-300 rounded-full mb-4 focus:outline-none focus:border-gray-600 text-white">
+      <button onClick={onLogin} className="p-2 border bg-white border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black font-semibold">
         {buttonDisabled ? "Please fill all feilds": "Login"}
       </button>
-      <Link className="text-white" href="/sign-up">New user SignUp here</Link>
+      <div className="flex flex-col items-center">
+      <p className="text-white">New user?</p>
+      <Link className="text-white " href="/sign-up">SignUp</Link>
+      </div>
+      
     </div>
   );
 };
