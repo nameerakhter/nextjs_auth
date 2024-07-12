@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-const signupPage = () => {
+const SignupPage = () => {
   const router = useRouter();
   const [user, setUser] = useState({
     email: "",
@@ -39,13 +39,13 @@ const signupPage = () => {
     setbuttonDisabled(true);}
   }, [user]);
   return (
-    <div className="flex flex-col items-center justify-center py-2 min-h-screen">
-      <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6 text-white ">
+    <div className="flex flex-col justify-center py-[4vw] mr-[40vw] ml-[40vw] mt-[10vw] mb-[20vw] rounded bg-black ">
+      <h1 className="text-4xl font-semibold tracking-tight lg:text-5xl mb-[2vw] text-white ">
         {loading ? "Processing" : "SignUp"}
       </h1>
       <hr />
       <label
-        className="text-white font-extrabold tracking-tight text-4xl"
+        className="text-white font-normal text-2xl tracking-tight text-normal py-[1vw] p"
         htmlFor="username"
       >
         Username
@@ -59,7 +59,7 @@ const signupPage = () => {
         placeholder="username"
       />
       <label
-        className="text-white font-extrabold tracking-tight text-4xl"
+        className="text-white font-normal text-2xl tracking-tight text-normal py-[1vw] p"
         htmlFor="email"
       >
         Email
@@ -73,7 +73,7 @@ const signupPage = () => {
         placeholder="email"
       />
       <label
-        className="text-white font-extrabold tracking-tight text-4xl"
+        className="text-white font-normal text-2xl tracking-tight text-normal py-[1vw] p"
         htmlFor="password"
       >
         Password
@@ -87,7 +87,7 @@ const signupPage = () => {
         placeholder="password"
       />
 
-      <button onClick={onSignUp} className="p-2 border border-gray-300 rounded-full mb-4 focus:outline-none focus:border-gray-600 text-white">
+      <button onClick={onSignUp} className="mt-[2vw] p-2 border border-gray-300 rounded-full mb-4 focus:outline-none focus:border-gray-600 text-white hover:bg-white hover:text-black">
         {buttonDisabled ? "Please fill all feilds": "Signup"}
       </button>
       <Link className="text-white" href="/login">Already an existing user</Link>
@@ -95,4 +95,4 @@ const signupPage = () => {
   );
 };
 
-export default signupPage;
+export default SignupPage;

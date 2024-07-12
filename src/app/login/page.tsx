@@ -30,16 +30,14 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    if (
-      user.email.length > 0 &&
-      user.password.length > 0
-    ) {
+    if (user.email.length > 0 && user.password.length > 0) {
       setbuttonDisabled(false);
-    }else{
-    setbuttonDisabled(true);}
+    } else {
+      setbuttonDisabled(true);
+    }
   }, [user]);
   return (
-    <div className="flex flex-col justify-center py-[4vw] mr-[40vw] ml-[40vw] mt-[10vw] mb-[20vw] rounded bg-black drop-shadow-2xl ">
+    <div className="flex flex-col justify-center py-[4vw] mr-[40vw] ml-[40vw] mt-[10vw] mb-[20vw] rounded bg-black ">
       <h1 className="text-4xl font-semibold tracking-tight lg:text-5xl mb-[2vw] text-white">
         {loading ? `Checking credentials` : "Login"}
       </h1>
@@ -51,7 +49,7 @@ const LoginPage = () => {
         Email
       </label>
       <input
-        className="p-2 border bg-black border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-white py-2"
+        className="p-2 border bg-white border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black py-2"
         type="text"
         id="email"
         value={user.email}
@@ -65,22 +63,25 @@ const LoginPage = () => {
         Password
       </label>
       <input
-        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-white py-2 bg-black"
+        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black py-2 bg-white"
         type="password"
         id="password"
         value={user.password}
         onChange={(e) => setUser({ ...user, password: e.target.value })}
         placeholder="password"
       />
-
-      <button onClick={onLogin} className="p-2 border bg-white border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black font-semibold">
-        {buttonDisabled ? "Please fill all feilds": "Login"}
-      </button>
+      <button
+          onClick={onLogin}
+          className="mt-[2vw] w-full p-2 border border-gray-300 rounded-full mb-4 focus:outline-none focus:border-gray-600 text-white hover:bg-white hover:text-black font-semibold"
+        >
+          {buttonDisabled ? "Please fill all fields" : "Login"}
+        </button>
       <div className="flex flex-col items-center">
-      <p className="text-white">New user?</p>
-      <Link className="text-white " href="/sign-up">SignUp</Link>
+        <p className="text-white">New user?</p>
+        <Link className="text-white " href="/sign-up">
+          SignUp
+        </Link>
       </div>
-      
     </div>
   );
 };
