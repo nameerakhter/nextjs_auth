@@ -86,12 +86,15 @@ const SignupPage = () => {
         onChange={(e) => setUser({ ...user, password: e.target.value })}
         placeholder="password"
       />
-
       <button onClick={onSignUp} className="mt-[2vw] p-2 border border-gray-300 rounded-full mb-4 focus:outline-none focus:border-gray-600 text-white hover:bg-white hover:text-black">
-        {buttonDisabled ? "Please fill all feilds": "Signup"}
+        {buttonDisabled ? "Please fill all fields to signup": "Signup"}
       </button>
-      <Link className="text-white" href="/login">Already an existing user</Link>
+      <div className="flex flex-col items-center w-full">
+      
+      <Link className="text-white" href="/login">Already an existing user?</Link>
     </div>
+      </div>
+      
   );
 };
 

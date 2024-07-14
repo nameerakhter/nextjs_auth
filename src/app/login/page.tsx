@@ -74,7 +74,7 @@ const LoginPage = () => {
           onClick={onLogin}
           className="mt-[2vw] w-full p-2 border border-gray-300 rounded-full mb-4 focus:outline-none focus:border-gray-600 text-white hover:bg-white hover:text-black font-semibold"
         >
-          {buttonDisabled ? "Please fill all fields" : "Login"}
+          {buttonDisabled ? "Please fill all fields to login" : "Login"}
         </button>
       <div className="flex flex-col items-center">
         <p className="text-white">New user?</p>
