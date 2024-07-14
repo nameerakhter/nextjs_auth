@@ -4,11 +4,16 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { CgProfile } from "react-icons/cg";
+import { SlSocialSpotify } from "react-icons/sl";
+
+import { Card, CardDescription, CardHeader } from "@/components/ui/card";
 
 import { set } from "mongoose";
 import Link from "next/link";
 
 const ProfilePage = () => {
+  const [date, setDate] = React.useState<Date | undefined>(new Date());
+  const [currentDate, setCurrentDate] = useState(new Date());
   const router = useRouter();
   const [data, setdata] = useState("nothing");
   const getUserDetails = async () => {
@@ -17,9 +22,10 @@ const ProfilePage = () => {
       console.log(response);
       setdata(response.data.data.username);
       const isAdmin = response.data.data.isAdmin;
-      if(!isAdmin){
+      if (!isAdmin) {
         toast.success(`User details fetched successfully`);
-
+      } else {
+        toast.success("Welcome back Admin");
       }
     } catch (error: any) {
       console.log(error.message);
@@ -56,14 +62,26 @@ const ProfilePage = () => {
           </div>
         )}
       </h2>
+
       <hr />
-      <div className="flex flex-col items-center space-y-[30vw]">
+      <div className="flex flex-col items-center space-y-[2vw]">
         <button
           onClick={getUserDetails}
           className="p-2 border bg-red-500 rounded-xl mb-4 focus:outline-none text-white"
         >
           Get user details
         </button>
+        <div className="text-white  gap-4 ">
+          <Card className="w-[350px] flex flex-col items-center justify-center py-4 ">
+            <CardHeader>
+              <CardDescription>
+                While you are here why not check a spotify playlist.
+              </CardDescription>
+            </CardHeader>
+              <SlSocialSpotify className="text-[2vw]" />
+          </Card>
+        </div>
+
         <button
           onClick={logout}
           className="p-2 border bg-blue-500 rounded-xl focus:outline-none text-white"

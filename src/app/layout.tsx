@@ -16,7 +16,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-black">{children}
-      <Toaster position="top-center" reverseOrder={false} />
+      <Toaster  toastOptions={{
+    className: '',
+    style: {
+      border: '1px solid #fff',
+      padding: '16px',
+      color: '#fff',
+      backgroundColor: '#000',
+    },
+  }} position="top-center" reverseOrder={false} />
       </body>
       
     </html>
